@@ -225,74 +225,27 @@ exports.customerId = function(req, res) {
 };
 
 // POST CUSTOMER
-exports.createCustomers = function(req, res) {
+exports.createEvent = function(req, res) {
     console.log(req.body);
-    let customerId = req.body.customerId;
-    let partner_reseller_fkid = req.body.partner_reseller_fkid;
-    let skuId = req.body.skuId;
-    let planName = req.body.planName;
-    let numSeats = req.body.numSeats;
-    let purchaseOrderId = req.body.purchaseOrderId;
-    let customerDomain = req.body.customerDomain;
-    let picContactName = req.body.picContactName;
-    let organizationName = req.body.organizationName;
-    let postalCode = req.body.postalCode;
-    let countryCode = req.body.countryCode;
-    let picAlternateEmail = req.body.picAlternateEmail;
+    let name = req.body.name;
+    let description = req.body.description;
+    let location = req.body.location;
+    let startdate = req.body.startdate;
+    let enddate = req.body.enddate;
 
-    // let customerDomainVerified = req.body.customerDomainVerified;
-    // let licensedNumberOfSeats = req.body.licensedNumberOfSeats;
-    // let region = req.body.region;
-    // let addressLine1 = req.body.addressLine1;
-    // let addressLine2 = req.body.addressLine2;
-    // let addressLine3 = req.body.addressLine3;
-    // let locality = req.body.locality;
-    // let phoneNumber = req.body.phoneNumber;
-    // let subscriptionId = req.body.subscriptionId;
-    // let status = req.body.status;
-    // let dealCode = req.body.dealCode;
-    // let numUserRegister = req.body.numUserRegister;
-    // // let customerCreationTime = new Date(req.body.customerCreationTime);
-    // let subCreationTime = new Date(req.body.subCreationTime);
-    // let subRenewalTime = new Date(req.body.subRenewalTime);
-    // let subExpiredTime = new Date(req.body.subExpiredTime);
-    // console.log("parameter: " +customerDomain )
-    connection.query('INSERT INTO customer (partner_reseller_fkid, customerId, skuId, planName, numSeats, purchaseOrderId, customerDomain, picContactName, organizationName, postalCode, countryCode, picAlternateEmail) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+    connection.query('INSERT INTO event (name, description, location, startdate, enddate) values (?, ?, ?, ?, ?)',
     [ 
-       partner_reseller_fkid, 
-       customerId, 
-       skuId, 
-       planName,
-       numSeats,
-       purchaseOrderId,
-       customerDomain, 
-       picContactName, 
-       organizationName, 
-       postalCode,
-       countryCode, 
-       picAlternateEmail
-
-    //    licensedNumberOfSeats, 
-    //    region, 
-    //    addressLine1, 
-    //    addressLine2, 
-    //    addressLine3, 
-    //    phoneNumber,
-    //    locality, 
-    //    customerDomainVerified,
-    //    subscriptionId,
-    //    status,
-    //    dealCode,
-    //    numUserRegister,
-    //    subCreationTime,
-    //    subRenewalTime,
-    //    subExpiredTime
+        name, 
+        description, 
+        location,
+        startdate,
+        enddate
     ], 
     function (error, rows, fields){
         if(error){
             console.log("INI ERROR NYA" + error)
         } else{
-            response.ok("Berhasil menambahkan customer!", res)
+            response.ok("Berhasil menambahkan event!", res)
         }
     });
 };

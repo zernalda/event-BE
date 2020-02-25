@@ -26,36 +26,9 @@ module.exports = function(app) {
     app.route('/')
         .get(todo.index);
 
-    app.route('/getToken')
-        .post(todo.getToken);
+    app.route('/createevent')
+        .post(todo.createEvent);
 
-    app.route('/login')
-        .post(verifyToken, todo.login);
-
-    app.route('/user')
-        .get(todo.getUser);
-    
-    app.route('/gcpDomains')
-        .post(todo.gcpDomains);
-
-    app.route('/domains')
-        .get(todo.domains);
-
-    app.route('/domains')
-        .post(todo.createDomains);
-
-    app.route('/domains')
-        .delete(todo.deleteDomain);
-
-    app.route('/customers')
-        .get(todo.customers);
-
-    app.route('/customer')
-        .get(todo.customerId);
-
-    app.route('/customers')
-        .post(todo.createCustomers);
-
-    app.route('/customer')
-        .delete(todo.deleteCustomer);
+    // app.route('/customer')
+    //     .delete(todo.deleteCustomer);
 };
