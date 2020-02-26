@@ -224,7 +224,30 @@ exports.customerId = function(req, res) {
     });
 };
 
-// POST CUSTOMER
+// DELETE Customer
+exports.deleteCustomer = function(req, res) {
+    console.log(req.body.id);
+    let id = req.body.id;
+
+    // console.log("parameter: " +id )
+    connection.query('DELETE FROM customer WHERE id = ?',
+    [ id ],
+    
+    function (error, rows, fields){
+        if(error){
+            console.log(error);
+            console.log("error nihh");
+        } else{
+            response.ok("Berhasil menghapus customer!", res)
+        }
+    });
+};
+
+exports.index = function(req, res) {
+    response.ok("Hello from the Node JS RESTful side!", res)
+};
+
+// POST EVENT
 exports.createEvent = function(req, res) {
     console.log(req.body);
     let name = req.body.name;
@@ -250,25 +273,13 @@ exports.createEvent = function(req, res) {
     });
 };
 
-// DELETE Customer
-exports.deleteCustomer = function(req, res) {
-    console.log(req.body.id);
-    let id = req.body.id;
-
-    // console.log("parameter: " +id )
-    connection.query('DELETE FROM customer WHERE id = ?',
-    [ id ],
-    
-    function (error, rows, fields){
+// GET EVENT LIST
+exports.listEvent = function(req, res) {
+    connection.query('SELECT * FROM event', function (error, rows, fields){
         if(error){
-            console.log(error);
-            console.log("error nihh");
+            console.log(error)
         } else{
-            response.ok("Berhasil menghapus customer!", res)
+            response.ok(rows, res)
         }
     });
-};
-
-exports.index = function(req, res) {
-    response.ok("Hello from the Node JS RESTful side!", res)
 };
