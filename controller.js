@@ -6,159 +6,30 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const jwt = require('jsonwebtoken');
-// let unirest = require('unirest');
 app.use(cors());
 
 
 app.use(function(req, res, next) {
 res.header("Access-Control-Allow-Origin", "'http://localhost:3000"); // update to match the domain you will make the request from
 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-// res.header("Access-Control-Allow-Origin", "https://jsonwhois.com/api/v1/whois");
-// res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-// res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Accept, Host, Authorization');
-// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Host, Authorization");
- // update to match the domain you will make the request from
- // 
   next();
 });
 
 
-// login
-exports.getToken = function (req, res) {
-    const user = {
-        id: 1, 
-        username: 'zernalda@point-star.com',
-        pass: 'developer'
-      }
+// // login
+// exports.getToken = function (req, res) {
+//     const user = {
+//         id: 1, 
+//         username: 'zernalda@point-star.com',
+//         pass: 'developer'
+//       }
     
-      jwt.sign({user}, 'secretkey', { expiresIn: '60s' }, (err, token) => {
-        res.json({
-          token
-        });
-      });
-    };
-
-exports.login = function (req, res) {  
-        // verifyToken,
-        jwt.verify(req.token, 'secretkey', (err, authData) => {
-        if(err) {
-            res.json({
-                message: 'error'+ err,
-                authData
-                });
-            // res.sendStatus(403);
-        } else {
-            res.json({
-            message: 'Post created...',
-            authData
-            });
-        }
-        });
-    };
-
-exports.getUser = function(req, res) {
-    connection.query('SELECT * FROM user_login', function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok(rows, res)
-            console.log("success get usersssss");
-      }
-    });
-};
-
-// GET domain
-exports.domains = function(req, res) {
-    connection.query('SELECT * FROM partner_reseller', function (error, rows, fields){
-        if(error){
-            console.log(error)
-        } else{
-            response.ok(rows, res)
-        }
-    });
-};
-
-// GET SPF // Check GCPDomain
-exports.gcpDomains = function(req, res) {
-    
-    let domain_name = req.body.domain;
-    console.log(domain_name);
-
-    response.ok(domain_name, res)
-
-    //exports.createDomains = function(req, res) {
-    
-    //}   
-    /*    
-    let urlMx = `https://mxtoolbox.com/api/v1/lookup/mx/`+domain_name;
-    let urlSpf = `https://mxtoolbox.com/api/v1/lookup/spf/`+domain_name;
-
-    axios.all([urlMx, urlSpf])
-    .then(axios.spread((...responses) => {
-        const responseOne = responses[0]
-        const responseTwo = responses[1]
-        // use/access the results 
-        // console.log("mx: " + responseOne + ", response : " +responses.data.Information);
-        // console.log("spf: " + responseTwo);
-        })).catch(errors => {
-        // react on errors.
-        });
-
-    // return true or false
-    axios.get(urlMx)
-    .then(response => {
-        const element = [];
-
-        // console.log("test value: "+response.data.Information);
-        console.log("jumlah response: " + response.data.Information.length);
-        console.log("ini hasil URL MX: "+urlMx+ " ,domain :"+this.state.newDomain.domain);
-        if ( response.data.Information.length > 0) {
-            // for(let in=0; in<response.data.Information.length; in++) {
-
-            // }
-            
-            for (let index = 0; index < response.data.Information.length; index++) {
-                console.log(response.data.Information[index].Hostname);
-                // element.push("Hostname");
-                const Hostname = response.data.Information[index].Hostname;
-                const id=index;
-                const findHost = Hostname.indexOf('google.com');
-
-                // validation
-
-
-                element.push({id,Hostname, findHost});
-                //if(element !== '') { element = element + ','; }
-                //element += '{hostname:'+response.data.Information[index].Hostname+'}';
-
-                
-            }
-            //{"hostname":"alt1@globalAgent.com"},{"hostname":"alt2@globalAgent.com"}
-            console.log("masuk sini");
-            console.log(element);
-        } else {
-            console.log("masuk sono");
-        }
-        this.setState({
-            //outputLists: response.data.Information,
-            outputLists: element,
-            outputListsLength: response.data.Information.length,
-            outputListsString: JSON.stringify(response.data.Information)
-        });
-    });
-    */
-
-    /*
-    axios.get(cors(),'https://mxtoolbox.com/api/v1/lookup/spf/point-star.com')
-    .end( function (error,res){
-        if(error){
-            console.log("masuk sini: " +error)
-        } else{
-            response.ok(res)
-        }
-    });
-    */
-}
+//       jwt.sign({user}, 'secretkey', { expiresIn: '60s' }, (err, token) => {
+//         res.json({
+//           token
+//         });
+//       });
+//     };
 
 // POST Domain
 exports.createDomains = function(req, res) {
@@ -246,6 +117,8 @@ exports.deleteCustomer = function(req, res) {
 exports.index = function(req, res) {
     response.ok("Hello from the Node JS RESTful side!", res)
 };
+
+// XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS // XL-AGMS
 
 // POST EVENT
 exports.createEvent = function(req, res) {

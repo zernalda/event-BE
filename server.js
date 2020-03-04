@@ -4,12 +4,10 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     controller = require('./controller');
     var cors = require('cors');
-    // var unirest = require('unirest');
 
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(cors());
-    // app.use(unirest());
 
     var routes = require('./routes');
     routes(app);
